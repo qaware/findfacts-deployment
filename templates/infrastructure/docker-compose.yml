@@ -43,7 +43,7 @@ services:
     container_name: prod_syslog
     restart: always
     entrypoint:
-      - bin/bash
+      - /bin/bash
       - -c
       - |
         crontab /syslog-rotate
@@ -54,8 +54,6 @@ services:
       - logs:/var/log/syslog-daemon
     ports:
       - 514:514
-      - 601:601
-      - 6514:6514
 
 
 volumes:
