@@ -26,7 +26,7 @@ function copy_replacing() {
       target=../deployed/$(eval echo $file)
       # Replace vars in file content
       mkdir -p "$(dirname $target)"
-      (envsubst < $file) > $target
+      (envsubst '${VERSION},${SCHEMA_VERSION}' < $file) > $target
     fi
   done
 }

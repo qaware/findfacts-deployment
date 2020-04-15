@@ -39,4 +39,4 @@ You can then reach the following endpoints:
  
 So make sure only ports 80 and 443 are exposed to the web.
 
-Logs are collected in the `infrastructure_logs` volume (can also be accessed from `prod_syslog` container under `/var/log/syslog-daemon/`).
+Logs are collected in the `infrastructure_logs` volume (can also be accessed from `prod_syslog` container under `/logs`).

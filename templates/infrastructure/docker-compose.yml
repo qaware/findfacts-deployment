@@ -6,9 +6,12 @@ services:
     container_name: prod_nginx
     restart: always
     volumes:
+      # nginx volumes and docker socket are needed for letsencrypt companion
       - nginx_certs:/etc/nginx/certs
+      - nginx_dhparam:/etc/nginx/dhparam
       - nginx_vhost:/etc/nginx/vhost.d
       - nginx_html:/usr/share/nginx/html
+      # docker socket is needed to find containers that have LETSENCRYPT_HOST and VIRTUAL_HOST set
       - /var/run/docker.sock:/tmp/docker.sock:ro
     ports:
       - 80:80
@@ -16,6 +19,7 @@ services:
     networks:
       - proxy
     logging:
+      # For data protection, log is disabled here (as it contains mostly request ips).
       driver: none
     labels:
       - 'com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy=true'
@@ -25,10 +29,11 @@ services:
     container_name: prod_nginx_letsencrypt
     restart: always
     volumes:
-    - nginx_certs:/etc/nginx/certs
-    - nginx_vhost:/etc/nginx/vhost.d
-    - nginx_html:/usr/share/nginx/html
-    - /var/run/docker.sock:/var/run/docker.sock:ro
+      - nginx_certs:/etc/nginx/certs
+      - nginx_dhparam:/etc/nginx/dhparam
+      - nginx_vhost:/etc/nginx/vhost.d
+      - nginx_html:/usr/share/nginx/html
+      - /var/run/docker.sock:/var/run/docker.sock:ro
     depends_on:
       - nginx-proxy
       - syslog
@@ -45,18 +50,20 @@ services:
     entrypoint:
       - /bin/bash
       - -c
+      # Add log-rotation cronjob and run syslog
       - |
-        crontab /syslog-rotate
-        /usr/sbin/syslog-ng -F
+        echo '0 1 * * * find /logs/ -name "*.log" -daystart -mtime +14 -type f -exec rm {} \;' | crontab -
+        /usr/sbin/syslog-ng -F --no-caps
     volumes:
-      - ./syslog-rotate:/syslog-rotate:ro
       - ./syslog-ng.conf:/etc/syslog-ng/syslog-ng.conf:ro
-      - logs:/var/log/syslog-daemon
+      - logs:/logs
     ports:
+      # Default syslog port is 514/tcp in the docker image
       - 514:514
 
 
 volumes:
+  nginx_dhparam:
   nginx_certs:
   nginx_vhost:
   nginx_html:
