@@ -9,7 +9,7 @@ services:
       - SOLR_HEAP=2g
     volumes:
       - data:/var/solr
-      - ./configsets:/var/solr/data/configsets:ro
+      - ./configsets:/var/solr/data/configsets:Z
     logging:
       driver: syslog
       options:

@@ -75,7 +75,7 @@ services:
       - -c
       # Add log-rotation cronjob and run syslog
       - |
-        echo '0 1 * * * find /logs/ -name "*.log" -daystart -mtime +14 -type f -exec rm {} \;' | crontab -
+        echo '0 1 * * * find /logs/ -name "*.log" -daystart -mtime +28 -type f -exec rm {} \;' | crontab -
         /usr/sbin/syslog-ng -F --no-caps
     volumes:
       - ./syslog-ng.conf:/etc/syslog-ng/syslog-ng.conf:Z
