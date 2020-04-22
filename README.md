@@ -7,7 +7,7 @@ There is a small tool, `update-deployed.sh` that creates a new deployment with t
 (and is able to do some variable replacement for consistent version numbers).
 Set the version number variables in this script appropriately.
 
-Don't change the `deployed` folder manually.
+__Don't change the `deployed` folder manually!__
 
 ## How to deploy
 Requirements: `docker` >= 18, `docker-compose`
