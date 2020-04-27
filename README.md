@@ -27,7 +27,6 @@ Steps to deploy:
    cd deployed/infrastructure
    docker-compose up -d
    ```
-   (If detach does not work for some reason, use `ctrl+z` to leave + run in background)
 5. Start db, then app (same way as infrastructure)
 
 #### Services
