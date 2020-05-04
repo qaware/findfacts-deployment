@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Replacement variables
-export VERSION="0.4.1" SCHEMA_VERSION="0.3.1"
+export VERSION="0.4.2" SCHEMA_VERSION="0.3.1"
 
 shopt -s nullglob dotglob
 root=$(dirname "$BASH_SOURCE")

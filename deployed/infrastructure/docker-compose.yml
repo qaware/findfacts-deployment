@@ -47,7 +47,7 @@ services:
     labels:
       - 'com.github.jrcs.letsencrypt_nginx_proxy_companion.docker_gen'
 
-  nginx-proxy-letsencrypt:
+  nginx-letsencrypt:
     image: jrcs/letsencrypt-nginx-proxy-companion:v1.12
     container_name: prod_nginx_letsencrypt
     restart: always
