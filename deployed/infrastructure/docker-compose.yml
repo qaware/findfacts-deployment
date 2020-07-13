@@ -52,10 +52,10 @@ services:
     container_name: prod_nginx_letsencrypt
     restart: always
     volumes:
-      - nginx_certs:/etc/nginx/certs
-      - nginx_dhparam:/etc/nginx/dhparam
-      - nginx_vhost:/etc/nginx/vhost.d
-      - nginx_html:/usr/share/nginx/html
+      - nginx_certs:/etc/nginx/certs:z
+      - nginx_dhparam:/etc/nginx/dhparam:z
+      - nginx_vhost:/etc/nginx/vhost.d:z
+      - nginx_html:/usr/share/nginx/html:z
       - /var/run/docker.sock:/var/run/docker.sock:ro
     depends_on:
       - nginx-dockergen
