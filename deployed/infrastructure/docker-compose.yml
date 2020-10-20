@@ -2,7 +2,7 @@ version: '3'
 
 services:
   nginx:
-    image: nginx:1.17.9
+    image: nginx:1.19.3
     container_name: prod_nginx
     restart: always
     volumes:
@@ -51,7 +51,7 @@ services:
       - 'com.github.jrcs.letsencrypt_nginx_proxy_companion.docker_gen'
 
   nginx-letsencrypt:
-    image: jrcs/letsencrypt-nginx-proxy-companion:v1.12
+    image: jrcs/letsencrypt-nginx-proxy-companion:v1.13
     container_name: prod_nginx_letsencrypt
     restart: always
     environment:
