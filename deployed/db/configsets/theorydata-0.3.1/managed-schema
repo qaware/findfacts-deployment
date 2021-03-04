@@ -84,7 +84,7 @@
   <field name="type" type="type_text" multiValued="false"/>
   <field name="type_facet" type="string" multiValued="false" docValues="true"/>
   <field name="uses" type="string" multiValued="true" uninvertible="false"/>
-  <copyField source="name" dest="name_facet" maxChars="32766"/>
-  <copyField source="theory" dest="theory_facet" maxChars="32766"/>
-  <copyField source="type" dest="type_facet" maxChars="32766"/>
+  <copyField source="name" dest="name_facet" maxChars="3276"/>
+  <copyField source="theory" dest="theory_facet" maxChars="3276"/>
+  <copyField source="type" dest="type_facet" maxChars="3276"/>
 </schema>
